@@ -67,7 +67,7 @@ vuong.haminh@gmail.com
 License - BSD
 -------
 
-Copyright (c) 2012, Ha Minh Vuong.
+Copyright (c) 2012, Ha Minh Vuong.  
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
