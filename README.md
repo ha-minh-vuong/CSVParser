@@ -15,17 +15,17 @@ Adding <code>CSVParser.h</code> and <code>CSVParser.m</code> to your Xcode proje
 
 1. Import the CSVParser class header:
 
-       #import "CSVParser.h"
+                        #import "CSVParser.h"
 
 2. Create an array from file:
 
-       NSArray *arrayOfArrays = [CSVParser parseCSVIntoArrayOfArraysFromFile:filePath
-                                                withSeparatedCharacterString:@","
-                                                        quoteCharacterString:nil]; // nil, if csv dont have quote.
+                        NSArray *arrayOfArrays = [CSVParser parseCSVIntoArrayOfArraysFromFile:filePath
+                                                                 withSeparatedCharacterString:@","
+                                                                         quoteCharacterString:nil]; // nil, if csv dont have quote.
 
-       NSArray *arrayOfDictionaries = [CSVParser parseCSVIntoArrayOfDictionariesFromFile:filePath
-                                                            withSeparatedCharacterString:@","
-                                                                    quoteCharacterString:@"\""]; // if csv contains ".
+                        NSArray *arrayOfDictionaries = [CSVParser parseCSVIntoArrayOfDictionariesFromFile:filePath
+                                                                             withSeparatedCharacterString:@","
+                                                                                     quoteCharacterString:@"\""]; // if csv contains ".
 
 Example
 -------
@@ -67,7 +67,7 @@ vuong.haminh@gmail.com
 License - BSD
 -------
 
-Copyright (c) 2012, Ha Minh Vuong. 
+Copyright (c) 2012, Ha Minh Vuong.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
