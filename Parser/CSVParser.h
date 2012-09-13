@@ -13,8 +13,19 @@
 + (NSArray *)parseCSVIntoArrayOfDictionariesFromFile:(NSString *)path
                         withSeparatedCharacterString:(NSString *)character
                                 quoteCharacterString:(NSString *)quote;
+
 + (NSArray *)parseCSVIntoArrayOfArraysFromFile:(NSString *)path
                   withSeparatedCharacterString:(NSString *)character
                           quoteCharacterString:(NSString *)quote;
+
++ (void)parseCSVIntoArrayOfDictionariesFromFile:(NSString *)path
+                   withSeparatedCharacterString:(NSString *)character
+                           quoteCharacterString:(NSString *)quote
+                                      withBlock:(void (^)(NSArray *array))block;
+
++ (void)parseCSVIntoArrayOfArraysFromFile:(NSString *)path
+             withSeparatedCharacterString:(NSString *)character
+                     quoteCharacterString:(NSString *)quote
+                                withBlock:(void (^)(NSArray *array))block;
 
 @end

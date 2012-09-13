@@ -19,21 +19,6 @@
     self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
-    
-    // For testing the parser
-    NSString *file = [[NSBundle mainBundle] pathForResource:@"USPresident Wikipedia" ofType:@"csv"];
-    
-    NSArray *arr = [CSVParser parseCSVIntoArrayOfArraysFromFile:file
-                                   withSeparatedCharacterString:@","
-                                           quoteCharacterString:nil];
-    NSLog(@"%@", arr);
-    
-    arr = [CSVParser parseCSVIntoArrayOfDictionariesFromFile:file
-                                withSeparatedCharacterString:@","
-                                        quoteCharacterString:nil];
-    NSLog(@"%@", arr);
-
-    
     return YES;
 }
 
