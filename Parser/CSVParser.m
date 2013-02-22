@@ -24,9 +24,9 @@
 }
 
 + (void)parseCSVIntoArrayOfDictionariesFromFile:(NSString *)path
-                        withSeparatedCharacterString:(NSString *)character
-                                quoteCharacterString:(NSString *)quote
-                                           withBlock:(void (^)(NSArray *array))block
+                   withSeparatedCharacterString:(NSString *)character
+                           quoteCharacterString:(NSString *)quote
+                                      withBlock:(void (^)(NSArray *array))block
 {
     dispatch_queue_t callerQueue = dispatch_get_current_queue();
     dispatch_queue_t queue = dispatch_queue_create("parseQueue", NULL);
@@ -54,8 +54,8 @@
 }
 
 + (void)parseCSVIntoArrayOfArraysFromFile:(NSString *)path
-                  withSeparatedCharacterString:(NSString *)character
-                          quoteCharacterString:(NSString *)quote
+             withSeparatedCharacterString:(NSString *)character
+                     quoteCharacterString:(NSString *)quote
                                 withBlock:(void (^)(NSArray *array))block
 {
     dispatch_queue_t callerQueue = dispatch_get_current_queue();
