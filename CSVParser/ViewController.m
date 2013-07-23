@@ -11,6 +11,7 @@
 
 @interface ViewController ()
 @property (strong) NSArray *array;
+@property (weak, nonatomic) IBOutlet UILabel *numberOfEntriesLabel;
 @end
 
 @implementation ViewController
@@ -22,34 +23,47 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    NSString *file = [[NSBundle mainBundle] pathForResource:@"USPresident Wikipedia" ofType:@"csv"];
+//    NSString *file = [[NSBundle mainBundle] pathForResource:@"USPresident Wikipedia" ofType:@"csv"];
     
     // For Testing
     
 //    [CSVParser parseCSVIntoArrayOfDictionariesFromFile:file
 //                          withSeparatedCharacterString:@","
 //                                  quoteCharacterString:nil
-//                                             withBlock:^(NSArray *array) {
+//                                             withBlock:^(NSArray *array, NSError *error) {
 //                                                 self.array = array;
 ////                                                 NSLog(@"%@", self.array);
+//                                                 self.numberOfEntriesLabel.text = [NSString stringWithFormat:@"%d", array.count];
 //                                             }];
     
-    [CSVParser parseCSVIntoArrayOfArraysFromFile:file
-                    withSeparatedCharacterString:@","
-                            quoteCharacterString:nil
-                                       withBlock:^(NSArray *array) {
-                                           self.array = array;
-//                                           NSLog(@"%@", self.array);
-                                       }];
+//    NSLog(@"%@", self.array);
+    
+//    [CSVParser parseCSVIntoArrayOfArraysFromFile:file
+//                    withSeparatedCharacterString:@","
+//                            quoteCharacterString:nil
+//                                       withBlock:^(NSArray *array, NSError *error) {
+//                                           self.array = array;
+////                                           NSLog(@"%@", self.array);
+//                                       }];
 }
 
 - (IBAction)showArray:(id)sender
 {
-    NSLog(@"%@", self.array);
+//    NSLog(@"%@", self.array);
+    NSString *file = [[NSBundle mainBundle] pathForResource:@"USPresident Wikipedia" ofType:@"csv"];
+    [CSVParser parseCSVIntoArrayOfDictionariesFromFile:file
+                          withSeparatedCharacterString:@","
+                                  quoteCharacterString:nil
+                                             withBlock:^(NSArray *array, NSError *error) {
+                                                 self.array = array;
+                                                 self.numberOfEntriesLabel.text = [NSString stringWithFormat:@"%d", array.count];
+                                             }];
+
 }
 
 - (void)viewDidUnload
 {
+    [self setNumberOfEntriesLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

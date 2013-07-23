@@ -26,13 +26,14 @@
 + (void)parseCSVIntoArrayOfDictionariesFromFile:(NSString *)path
                    withSeparatedCharacterString:(NSString *)character
                            quoteCharacterString:(NSString *)quote
-                                      withBlock:(void (^)(NSArray *array))block
+                                      withBlock:(void (^)(NSArray *array, NSError *error))block
 {
     dispatch_queue_t callerQueue = dispatch_get_current_queue();
     dispatch_queue_t queue = dispatch_queue_create("parseQueue", NULL);
     dispatch_async(queue, ^{
+        NSError *err = nil;
         NSMutableArray *mutArray = [[NSMutableArray alloc] init];
-        NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
         if (!content) return;
         NSArray *rows = [content componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\r"]];
         NSString *trimStr = (quote != nil) ? [quote stringByAppendingString:@"\n\r "] : @"\n\r ";
@@ -45,7 +46,7 @@
         }
         if (block) {
             dispatch_async(callerQueue, ^{
-                block(mutArray);
+                block(mutArray, err);
             });
         }
         dispatch_release(callerQueue);
@@ -56,14 +57,15 @@
 + (void)parseCSVIntoArrayOfArraysFromFile:(NSString *)path
              withSeparatedCharacterString:(NSString *)character
                      quoteCharacterString:(NSString *)quote
-                                withBlock:(void (^)(NSArray *array))block
+                                withBlock:(void (^)(NSArray *array, NSError *error))block
 {
     dispatch_queue_t callerQueue = dispatch_get_current_queue();
     dispatch_queue_t queue = dispatch_queue_create("parseQueue", NULL);
     
     dispatch_async(queue, ^{
+        NSError *err = nil;
         NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
-        NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
         if (!content) return;
         NSArray *rows = [content componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\r"]];
         NSString *trimStr = (quote != nil) ? [quote stringByAppendingString:@"\n\r "] : @"\n\r ";
@@ -73,7 +75,7 @@
         }];
         if (block) {
             dispatch_async(callerQueue, ^{
-                block(mutableArray);
+                block(mutableArray, err);
             });
         }
         dispatch_release(callerQueue);
