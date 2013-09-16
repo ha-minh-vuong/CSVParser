@@ -21,7 +21,7 @@ Adding <code>CSVParser.h</code> and <code>CSVParser.m</code> to your Xcode proje
 
 2. Create an array from file:
 
-```
+```objective-c
 NSArray *arrayOfArrays = [CSVParser parseCSVIntoArrayOfArraysFromFile:filePath
                                          withSeparatedCharacterString:@","
                                                  quoteCharacterString:nil]; // nil, if csv dont have quote.
