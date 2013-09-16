@@ -36,32 +36,38 @@ Example
 
 Assume you have a csv file:
 
-    name,email,address
-    "Lucky Star",lucky@abc.com,"1A street"
-    "Joe A",joe@abc.com,"2B street"
+```csv
+name,email,address
+"Lucky Star",lucky@abc.com,"1A street"
+"Joe A",joe@abc.com,"2B street"
+```
 
 Array of arrays:
 
-    NSArray *arrayOfArrays = [CSVParser parseCSVIntoArrayOfArraysFromFile:filePath
-                                             withSeparatedCharacterString:@","
-                                                     quoteCharacterString:@"\""];
+```objective-c
+NSArray *arrayOfArrays = [CSVParser parseCSVIntoArrayOfArraysFromFile:filePath
+                                         withSeparatedCharacterString:@","
+                                                 quoteCharacterString:@"\""];
 
-    (("name","email","address"),
-     ("Lucky Star","lucky@abc.com","1A street"),
-     ("Joe A","joe@abc.com","2B street"))
+//    (("name","email","address"),
+//     ("Lucky Star","lucky@abc.com","1A street"),
+//     ("Joe A","joe@abc.com","2B street"))
+```
 
 Array of dictionaries:
 
-    NSArray *arrayOfDictionaries = [CSVParser parseCSVIntoArrayOfDictionariesFromFile:filePath
-                                                         withSeparatedCharacterString:@","
-                                                                 quoteCharacterString:@"\""];
+```objective-c
+NSArray *arrayOfDictionaries = [CSVParser parseCSVIntoArrayOfDictionariesFromFile:filePath
+                                                     withSeparatedCharacterString:@","
+                                                             quoteCharacterString:@"\""];
 
-    ({"name" = "Lucky Star";
-      "email" = "lucky@abc.com";
-      "address" = "1A street";},
-     {"name" = "Joe A";
-      "email" = "joe@abc.com";
-      "address" = "2B street";})
+//    ({"name" = "Lucky Star";
+//      "email" = "lucky@abc.com";
+//      "address" = "1A street";},
+//     {"name" = "Joe A";
+//      "email" = "joe@abc.com";
+//      "address" = "2B street";})
+```
 
 Contact
 -------
