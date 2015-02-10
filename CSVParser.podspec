@@ -1,19 +1,19 @@
 Pod::Spec.new do |s|
   s.name = "CSVParser"
-  s.version = "0.1"
+  s.version = "0.2"
   s.summary = "A CSV Parser for iOS and OSX"
   s.description = <<-DESC
                    * It can parse csv file into an array of arrays or an array of dictionaries.
                    * The csv file can contain single quote ' or double quote ".
                    DESC
-  s.homepage = "https://github.com/ha-minh-vuong/CSVParser"
+  s.homepage = "https://github.com/hyperoslo/CSVParser.git"
   s.license = {
     :type => 'BSD',
     :file => 'LICENSE'
   }
   s.platform = :ios, '7.0'
   s.source = {
-    :git => 'https://github.com/ha-minh-vuong/CSVParser.git',
+    :git => 'https://github.com/hyperoslo/CSVParser.git',
     :tag => s.version.to_s
   }
   s.source_files = 'CSVParser/Parser/*.{h,m}'
