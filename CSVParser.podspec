@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "CSVParser"
-  s.version = "0.2"
+  s.version = "0.1"
   s.summary = "A CSV Parser for iOS and OSX"
   s.description = <<-DESC
                    * It can parse csv file into an array of arrays or an array of dictionaries.
