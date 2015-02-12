@@ -17,6 +17,7 @@
 		49BE1D0515F0C21E0080FFD5 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49BE1D0315F0C21E0080FFD5 /* ViewController.xib */; };
 		49BE1D1015F0C2350080FFD5 /* USPresident Wikipedia.csv in Resources */ = {isa = PBXBuildFile; fileRef = 49BE1D0F15F0C2350080FFD5 /* USPresident Wikipedia.csv */; };
 		49BE1D1415F0C2670080FFD5 /* CSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BE1D1315F0C2670080FFD5 /* CSVParser.m */; };
+		9AE8CC781A8A142000803B76 /* CSVParser.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 9AE8CC771A8A142000803B76 /* CSVParser.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		49BE1D0F15F0C2350080FFD5 /* USPresident Wikipedia.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "USPresident Wikipedia.csv"; sourceTree = "<group>"; };
 		49BE1D1215F0C2670080FFD5 /* CSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSVParser.h; path = ../Parser/CSVParser.h; sourceTree = "<group>"; };
 		49BE1D1315F0C2670080FFD5 /* CSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSVParser.m; path = ../Parser/CSVParser.m; sourceTree = "<group>"; };
+		9AE8CC771A8A142000803B76 /* CSVParser.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CSVParser.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 		49BE1CDF15F0C21E0080FFD5 = {
 			isa = PBXGroup;
 			children = (
+				9AE8CC771A8A142000803B76 /* CSVParser.podspec */,
 				49BE1CF415F0C21E0080FFD5 /* CSVParser */,
 				49BE1CED15F0C21E0080FFD5 /* Frameworks */,
 				49BE1CEB15F0C21E0080FFD5 /* Products */,
@@ -167,6 +170,7 @@
 			files = (
 				49BE1CF915F0C21E0080FFD5 /* InfoPlist.strings in Resources */,
 				49BE1D0515F0C21E0080FFD5 /* ViewController.xib in Resources */,
+				9AE8CC781A8A142000803B76 /* CSVParser.podspec in Resources */,
 				49BE1D1015F0C2350080FFD5 /* USPresident Wikipedia.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,6 +301,7 @@
 				49BE1D0A15F0C21E0080FFD5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
