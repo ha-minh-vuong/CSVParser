@@ -17,6 +17,9 @@
 		49BE1D0515F0C21E0080FFD5 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49BE1D0315F0C21E0080FFD5 /* ViewController.xib */; };
 		49BE1D1015F0C2350080FFD5 /* USPresident Wikipedia.csv in Resources */ = {isa = PBXBuildFile; fileRef = 49BE1D0F15F0C2350080FFD5 /* USPresident Wikipedia.csv */; };
 		49BE1D1415F0C2670080FFD5 /* CSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BE1D1315F0C2670080FFD5 /* CSVParser.m */; };
+		678D84751B12A21400D72860 /* SATCOM_UPDATED_10-20.xls - Model Questions.csv in Resources */ = {isa = PBXBuildFile; fileRef = 678D84741B12A21400D72860 /* SATCOM_UPDATED_10-20.xls - Model Questions.csv */; };
+		678D84831B13608200D72860 /* SATCOM.csv in Resources */ = {isa = PBXBuildFile; fileRef = 678D84821B13608200D72860 /* SATCOM.csv */; };
+		678D84C11B139A7800D72860 /* STRING_SATCOM.csv in Resources */ = {isa = PBXBuildFile; fileRef = 678D84C01B139A7800D72860 /* STRING_SATCOM.csv */; };
 		9AE8CC781A8A142000803B76 /* CSVParser.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 9AE8CC771A8A142000803B76 /* CSVParser.podspec */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +40,9 @@
 		49BE1D0F15F0C2350080FFD5 /* USPresident Wikipedia.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "USPresident Wikipedia.csv"; sourceTree = "<group>"; };
 		49BE1D1215F0C2670080FFD5 /* CSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSVParser.h; path = ../Parser/CSVParser.h; sourceTree = "<group>"; };
 		49BE1D1315F0C2670080FFD5 /* CSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSVParser.m; path = ../Parser/CSVParser.m; sourceTree = "<group>"; };
+		678D84741B12A21400D72860 /* SATCOM_UPDATED_10-20.xls - Model Questions.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SATCOM_UPDATED_10-20.xls - Model Questions.csv"; sourceTree = "<group>"; };
+		678D84821B13608200D72860 /* SATCOM.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SATCOM.csv; sourceTree = "<group>"; };
+		678D84C01B139A7800D72860 /* STRING_SATCOM.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = STRING_SATCOM.csv; sourceTree = "<group>"; };
 		9AE8CC771A8A142000803B76 /* CSVParser.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CSVParser.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +93,9 @@
 			children = (
 				49BE1D1115F0C23F0080FFD5 /* Parser */,
 				49BE1D0F15F0C2350080FFD5 /* USPresident Wikipedia.csv */,
+				678D84741B12A21400D72860 /* SATCOM_UPDATED_10-20.xls - Model Questions.csv */,
+				678D84C01B139A7800D72860 /* STRING_SATCOM.csv */,
+				678D84821B13608200D72860 /* SATCOM.csv */,
 				49BE1CFD15F0C21E0080FFD5 /* AppDelegate.h */,
 				49BE1CFE15F0C21E0080FFD5 /* AppDelegate.m */,
 				49BE1D0015F0C21E0080FFD5 /* ViewController.h */,
@@ -168,8 +177,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				678D84831B13608200D72860 /* SATCOM.csv in Resources */,
+				678D84751B12A21400D72860 /* SATCOM_UPDATED_10-20.xls - Model Questions.csv in Resources */,
 				49BE1CF915F0C21E0080FFD5 /* InfoPlist.strings in Resources */,
 				49BE1D0515F0C21E0080FFD5 /* ViewController.xib in Resources */,
+				678D84C11B139A7800D72860 /* STRING_SATCOM.csv in Resources */,
 				9AE8CC781A8A142000803B76 /* CSVParser.podspec in Resources */,
 				49BE1D1015F0C2350080FFD5 /* USPresident Wikipedia.csv in Resources */,
 			);

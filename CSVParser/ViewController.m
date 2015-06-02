@@ -50,15 +50,19 @@
 - (IBAction)showArray:(id)sender
 {
 //    NSLog(@"%@", self.array);
-    NSString *file = [[NSBundle mainBundle] pathForResource:@"USPresident Wikipedia" ofType:@"csv"];
+    NSString *file = [[NSBundle mainBundle] pathForResource:@"STRING_SATCOM" ofType:@"csv"];
+    
+  //  NSArray* fileArray = [CSVParser parseCSVIntoArrayOfDictionariesFromFile:file withSeparatedCharacterString:@"," quoteCharacterString:nil];
+
     [CSVParser parseCSVIntoArrayOfDictionariesFromFile:file
                           withSeparatedCharacterString:@","
-                                  quoteCharacterString:nil
+                                  quoteCharacterString:@"\""
                                              withBlock:^(NSArray *array, NSError *error) {
                                                  self.array = array;
                                                  self.numberOfEntriesLabel.text = [NSString stringWithFormat:@"%d", array.count];
                                              }];
-
+    
+   
 }
 
 - (void)viewDidUnload

@@ -34,14 +34,21 @@
         NSError *err = nil;
         NSMutableArray *mutArray = [[NSMutableArray alloc] init];
         NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
+        
         if (!content) return;
-        NSArray *rows = [content componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\r"]];
+        NSArray *rows = [content componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n\r"]];
         NSString *trimStr = (quote != nil) ? [quote stringByAppendingString:@"\n\r "] : @"\n\r ";
+        
         NSArray *keys = [CSVParser trimComponents:[[rows objectAtIndex:0] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:character]]
                                    withCharacters:trimStr];
+        
         for (int i = 1; i < rows.count; i++) {
-            NSArray *objects = [CSVParser trimComponents:[[rows objectAtIndex:i] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:character]]
-                                          withCharacters:trimStr];
+//            NSArray *objects = [CSVParser trimComponents:[[rows objectAtIndex:i] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:character]]
+//                                          withCharacters:trimStr];
+            
+            NSArray *objects = [self trimComponents:[self slipStringWith:[rows objectAtIndex:i] columnSeparator:character]
+                                     withCharacters:trimStr];
+            
             [mutArray addObject:[NSDictionary dictionaryWithObjects:objects forKeys:keys]];
         }
         if (block) {
@@ -67,7 +74,7 @@
         NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
         NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
         if (!content) return;
-        NSArray *rows = [content componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\r"]];
+        NSArray *rows = [content componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n\r"]];
         NSString *trimStr = (quote != nil) ? [quote stringByAppendingString:@"\n\r "] : @"\n\r ";
         [rows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             [mutableArray addObject:[CSVParser trimComponents:[obj componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:character]]
@@ -91,12 +98,17 @@
     NSMutableArray *mutableArray = [[NSMutableArray alloc] init];    
     NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
     if (!content) return nil;
-    NSArray *rows = [content componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\r"]];
+    NSArray *rows = [content componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n\r"]];
     NSString *trimStr = (quote != nil) ? [quote stringByAppendingString:@"\n\r "] : @"\n\r ";
+    
+    
     NSArray *keys = [CSVParser trimComponents:[[rows objectAtIndex:0] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:character]]
                                withCharacters:trimStr];
+    
+    
     for (int i = 1; i < rows.count; i++) {
-        NSArray *objects = [CSVParser trimComponents:[[rows objectAtIndex:i] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:character]]
+        
+        NSArray *objects = [CSVParser trimComponents:[ [rows objectAtIndex:i] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:character]]
                                       withCharacters:trimStr];
         [mutableArray addObject:[NSDictionary dictionaryWithObjects:objects forKeys:keys]];
     }
@@ -112,7 +124,7 @@
     NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
     NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
     if (!content) return nil;
-    NSArray *rows = [content componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\r"]];
+    NSArray *rows = [content componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n\r"]];
     NSString *trimStr = (quote != nil) ? [quote stringByAppendingString:@"\n\r "] : @"\n\r ";
     [rows enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [mutableArray addObject:[CSVParser trimComponents:[obj componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:character]]
@@ -120,5 +132,67 @@
     }];
     return mutableArray;
 }
+
+
++(NSArray*) slipStringWith:(NSString*)content columnSeparator:(NSString*) character {
+    
+    NSScanner *scanner = [[NSScanner alloc] initWithString:content];
+    NSString * separator = [NSString stringWithFormat:@"\"%@", character];
+    
+    NSCharacterSet *characters = [NSCharacterSet characterSetWithCharactersInString:separator];
+    [scanner setCharactersToBeSkipped:nil];
+    NSMutableArray * column = [[NSMutableArray alloc]init];
+    NSMutableString *word = [[NSMutableString alloc] init];
+    BOOL inQuotes = NO;
+    while(scanner.isAtEnd == NO)
+    {
+        NSString *subString;
+        [scanner scanUpToCharactersFromSet:characters intoString:&subString];
+        NSUInteger currentLocation = [scanner scanLocation];
+        if(currentLocation >= scanner.string.length)
+        {
+            if(subString.length > 0)
+                [column addObject:subString];
+            break;
+        }
+        if([scanner.string characterAtIndex:currentLocation] == '"')
+        {
+            inQuotes = !inQuotes;
+            if(subString == nil)
+            {
+                [scanner setScanLocation:currentLocation + 1];
+                continue;
+            }
+            [word appendFormat:@"%@",subString];
+            if(word.length > 0)
+                [column addObject:word.copy];
+            [word deleteCharactersInRange:NSMakeRange(0, word.length)];
+        }
+        if([scanner.string characterAtIndex:currentLocation] == ',')
+        {
+            if(subString == nil)
+            {
+                [column addObject:@""];
+                [scanner setScanLocation:currentLocation + 1];
+                continue;
+            }
+            if(inQuotes == NO)
+                [column addObject:subString];
+            else
+                [word appendFormat:@"%@%@",subString, character];
+        }
+        [scanner setScanLocation:currentLocation + 1];
+    }
+    
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"SELF endswith %@", @","];
+    BOOL find = [predicate evaluateWithObject:content];
+    if (find) {
+        [column addObject:@""];
+    }
+    
+    return column;
+}
+
+
 
 @end
