@@ -71,10 +71,6 @@ NSArray *arrayOfDictionaries = [CSVParser parseCSVIntoArrayOfDictionariesFromFil
 //      "address" = "2B street";})
 ```
 
-Contact
--------
-
-vuong.haminh@gmail.com
 
 License - BSD
 -------
